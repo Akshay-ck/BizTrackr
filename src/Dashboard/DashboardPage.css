@@ -1,0 +1,84 @@
+/* DashboardPage.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.dashboard {
+  display: flex;
+  height: 100vh;
+  background: #111;
+  color: white;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 220px;
+  background: #000;
+  border-right: 1px solid #333;
+  padding: 30px 20px;
+}
+
+.sidebar-title {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: white;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item {
+  padding: 12px 10px;
+  margin-bottom: 10px;
+  background: #1a1a1a;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.menu-item:hover,
+.menu-item.active {
+  background: #333;
+}
+
+/* Main Content */
+.content {
+  flex: 1;
+  padding: 40px 30px;
+}
+
+.content-title {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+.analytics {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.card {
+  background: #1e1e1e;
+  border: 1px solid #444;
+  padding: 20px;
+  border-radius: 8px;
+  width: 250px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+}
+
+.card h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  color: #ccc;
+}
+
+.card p {
+  font-size: 22px;
+  font-weight: bold;
+  color: white;
+}
