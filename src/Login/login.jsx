@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './LoginPage.css'; // Make sure this file exists in the same folder
+import './LoginPage.css';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebase";
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -9,13 +11,13 @@ const LoginPage = () => {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    // try {
-    // await signInWithEmailAndPassword(auth, email, password);
-    // alert("Login successful!");
-    // } catch (err) {
-    // console.error(err.message);
-    // }
-    navigate('/dashboard');
+    try {
+      const userCred = await signInWithEmailAndPassword(auth, email, password);
+      console.log(userCred)
+      navigate('/dashboard');
+    } catch (err) {
+      console.error(err.message);
+    }
   };
 
   return (
@@ -41,6 +43,12 @@ const LoginPage = () => {
           />
           <button type="submit" className="login-button">Log In</button>
         </form>
+
+        {/* Register link */}
+        <div className="login-register-link">
+          <p>Don't have an account? <span onClick={() => navigate('/register')} className="register-link">Register</span></p>
+        </div>
+
         <p className="login-footer">© {new Date().getFullYear()} BizTrackr</p>
       </div>
     </div>
