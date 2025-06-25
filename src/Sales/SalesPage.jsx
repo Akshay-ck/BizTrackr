@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import './SalesPage.css';
+import { useLocation } from 'react-router-dom';
 
 const SalesPage = () => {
+  const location = useLocation();
+  const { matchedData } = location.state || {};
+  console.log('matchedData', matchedData)
   const [entries, setEntries] = useState([]);
   const [form, setForm] = useState({
     date: '',
