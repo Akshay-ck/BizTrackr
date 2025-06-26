@@ -1,19 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
 import './SalesPage1.css';
 
 function SalesPage1() {
-  const location = useLocation();
-  const { matchedData } = location.state || {};
-
   const [salesRows, setSalesRows] = useState([]);
-  const [isEditMode, setIsEditMode] = useState(!matchedData); // if no data, allow editing (new create)
-
-  useEffect(() => {
-    if (matchedData && matchedData.rows) {
-      setSalesRows(matchedData.rows); // assuming matchedData has `rows` array
-    }
-  }, [matchedData]);
 
   const handleAddLine = () => {
     setSalesRows([
@@ -41,22 +30,11 @@ function SalesPage1() {
     setSalesRows(updatedRows);
   };
 
-  const handleEdit = () => {
-    setIsEditMode(true);
-  };
-
-  const handleSave = () => {
-    console.log('Saving data...', salesRows);
-    // TODO: Save to backend or send to another component
-    setIsEditMode(false);
-  };
-
   return (
     <div className="sales-page">
       <div className="header-controls">
-        {!isEditMode && <button onClick={handleEdit}>Edit</button>}
-        {isEditMode && <button onClick={handleSave}>Save</button>}
-        {!matchedData && <button onClick={handleSave}>Create</button>}
+        <button>Edit</button>
+        <button>Create</button>
       </div>
 
       <h2>Sales Entry</h2>
@@ -76,7 +54,7 @@ function SalesPage1() {
             <th>Bill</th>
             <th>Payment</th>
             <th>Balance</th>
-            {isEditMode && <th>Action</th>}
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -89,7 +67,6 @@ function SalesPage1() {
                   onChange={(e) =>
                     handleInputChange(index, 'date', e.target.value)
                   }
-                  readOnly={!isEditMode}
                 />
               </td>
               <td>
@@ -99,7 +76,6 @@ function SalesPage1() {
                   onChange={(e) =>
                     handleInputChange(index, 'product', e.target.value)
                   }
-                  readOnly={!isEditMode}
                 />
               </td>
               <td>
@@ -109,7 +85,6 @@ function SalesPage1() {
                   onChange={(e) =>
                     handleInputChange(index, 'qty', e.target.value)
                   }
-                  readOnly={!isEditMode}
                 />
               </td>
               <td>
@@ -119,7 +94,6 @@ function SalesPage1() {
                   onChange={(e) =>
                     handleInputChange(index, 'rate', e.target.value)
                   }
-                  readOnly={!isEditMode}
                 />
               </td>
               <td>
@@ -129,7 +103,6 @@ function SalesPage1() {
                   onChange={(e) =>
                     handleInputChange(index, 'bill', e.target.value)
                   }
-                  readOnly={!isEditMode}
                 />
               </td>
               <td>
@@ -139,7 +112,6 @@ function SalesPage1() {
                   onChange={(e) =>
                     handleInputChange(index, 'payment', e.target.value)
                   }
-                  readOnly={!isEditMode}
                 />
               </td>
               <td>
@@ -149,30 +121,25 @@ function SalesPage1() {
                   onChange={(e) =>
                     handleInputChange(index, 'balance', e.target.value)
                   }
-                  readOnly={!isEditMode}
                 />
               </td>
-              {isEditMode && (
-                <td>
-                  <button
-                    className="delete-btn"
-                    onClick={() => handleDeleteRow(index)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              )}
-            </tr>
-          ))}
-          {isEditMode && (
-            <tr>
-              <td colSpan={8}>
-                <a href="#" onClick={(e) => { e.preventDefault(); handleAddLine(); }}>
-                  + Add a line
-                </a>
+              <td>
+                <button
+                  className="delete-btn"
+                  onClick={() => handleDeleteRow(index)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
-          )}
+          ))}
+          <tr>
+            <td colSpan={8}>
+              <a href="#" onClick={(e) => { e.preventDefault(); handleAddLine(); }}>
+                + Add a line
+              </a>
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
