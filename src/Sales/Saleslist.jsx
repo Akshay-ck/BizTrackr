@@ -7,24 +7,24 @@ import useFirestoreCollection from '../FirestoreCollection/useFirestoreCollectio
 const SalesList = () => {
     const navigate = useNavigate();
     const handleCreate = () => {
-        navigate('/sales/create');
+        const matchedData = false
+        navigate('/sales/create', { state: { matchedData } });
     };
     const handleRowClick = (id) => {
-        console.log('id', id, salesData)
         const matchedData = salesData.find(item => item.id === id);
         if (matchedData) {
             navigate('/sales/create', { state: { matchedData } });
         }
     };
-    const { data: salesData, loading, error } = useFirestoreCollection(db, 'slaes');
+    const { data: salesData, loading, error } = useFirestoreCollection(db, 'sales');
     const headers = ['SL', 'Date', 'Customer', 'Bill', 'Payments'];
     const data = salesData.map((sale, index) => ({
         sl: index + 1,
         id: sale.id,
-        customer: sale.customer_name,
+        customer: sale.customer,
         date: sale.create_date?.toDate().toISOString().split('T')[0] || '',
-        bill: sale.total_amount,
-        payments: sale.balance_amount
+        bill: sale.bill,
+        payments: sale.payment
     }));
     return(
         <ListView

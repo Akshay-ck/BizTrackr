@@ -10,7 +10,7 @@ function App() {
   return (
     <Router basename="/BizTrackr">
       <Routes>
-        <Route path="/" element={<SalesPage1 />} />
+        <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/Sales" element={<SalesList />} />
