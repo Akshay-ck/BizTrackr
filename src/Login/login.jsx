@@ -12,8 +12,8 @@ const LoginPage = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const userCred = await signInWithEmailAndPassword(auth, email, password);
-      console.log(userCred)
+      // const userCred = await signInWithEmailAndPassword(auth, email, password);
+      // console.log(userCred)
       navigate('/dashboard');
     } catch (err) {
       console.error(err.message);

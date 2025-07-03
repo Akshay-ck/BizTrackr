@@ -12,8 +12,8 @@ const DashboardPage = () => {
         <ul className="menu">
           <li className="menu-item active">Dashboard</li>
           <li className="menu-item" onClick={() => navigate('/sales')}>Sales</li>
-          <li className="menu-item">Income</li>
-          <li className="menu-item">Expenses</li>
+          <li className="menu-item" >Income</li>
+          <li className="menu-item" onClick={() => navigate('/expense')}>Expenses</li>
           <li className="menu-item">Reports</li>
           <li className="menu-item">Settings</li>
         </ul>
