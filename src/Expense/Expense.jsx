@@ -8,6 +8,7 @@ import Modal from "../components/Modal/Modal";
 import ExpenseForm from "./ExpensMark";
 import AddExpenseTypeForm from "./ExpenseType";
 import useFirestoreCollection from '../FirestoreCollection/useFirestoreCollection';
+import Kanban from "../components/Kanban/KanbanGrid";
 
 
 const ExpensePage = () => {
@@ -24,7 +25,17 @@ const ExpensePage = () => {
     console.log('types', types)
     useEffect(() => {
       console.log("Updated ExpenseType:", ExpenseType);
-    }, [ExpenseType]);
+      if (showModal) {
+    document.body.style.overflow = 'hidden';  // Disable scroll
+  } else {
+    document.body.style.overflow = 'auto';    // Re-enable scroll
+  }
+
+  // Cleanup on unmount
+  return () => {
+    document.body.style.overflow = 'auto';
+  };
+    }, [ExpenseType, showModal]);
     const menuItems = [
         { name: 'Expense Types', key: 'types', active: activeTab === 'types', click: () => setActiveTab('types'), icon: <Tag size={16} /> },
         { name: 'Expenses', key: 'expense', active: activeTab === 'expense', click: () => setActiveTab('expense'), icon: <DollarSign size={16} /> },
@@ -50,7 +61,7 @@ const ExpensePage = () => {
       try {
         if (activeTab === 'types'){
           let savedData = await saveExpenseType(data);  // Save to Firestore
-          refresh();
+          await refresh();
           setexpenseType(prev => [...prev, savedData]);
         }
         else {
@@ -78,31 +89,14 @@ const ExpensePage = () => {
 
                 {activeTab === 'types' ? (
                   types.length > 0 ? (
-                    <div className="expense-types-container">
-                      {types.map((type) => (
-                        <div className="expense-type-card" key={type.id}>
-                          <div className="icon-circle" style={{ backgroundColor: `${type.color}20` }}>
-                            <Tag size={18} color={type.color} />
-                          </div>
-                          <div className="expense-type-info">
-                            <div className="expense-type-name">{type.name}</div>
-                            <div className="expense-type-date">
-                              {new Date(type.createdAt).toLocaleDateString()}
-                            </div>
-                          </div>
-                          <div className="expense-type-actions">
-                            <button className="icon-button" title="Edit">
-                              <i className="fas fa-pen" />
-                            </button>
-                            <button className="icon-button" title="Delete">
-                              <i className="fas fa-trash" />
-                            </button>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
+                    <Kanban
+                      items={types}
+                      onEdit={(item) => console.log("Edit clicked", item)}
+                      onDelete={(id) => console.log("Delete clicked", id)}
+                    />
                   ) : (
                     <div className="empty-state">
+                      {loading && <p>Loading expense types...</p>}
                       <Tag size={40} />
                       <h3>No expense types yet</h3>
                       <p>Create your first expense type to get started.</p>
