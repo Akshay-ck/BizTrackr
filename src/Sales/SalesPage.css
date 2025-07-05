@@ -1,69 +1,104 @@
-/* SalesPage.css */
 .sales-page {
-  padding: 40px;
-  background: #111;
-  color: white;
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
   min-height: 100vh;
-  font-family: 'Segoe UI', sans-serif;
 }
 
 h2 {
   margin-bottom: 20px;
+  color: #343a40;
   font-size: 28px;
-  color: #fff;
 }
 
-.sales-form {
+.input-group {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 30px;
+  gap: 15px;
+  margin-bottom: 20px;
 }
 
-.sales-form input {
+.input-group input {
   padding: 10px;
-  background: #1a1a1a;
-  border: 1px solid #444;
-  color: white;
-  border-radius: 4px;
-  min-width: 120px;
-  flex: 1;
-}
-
-.sales-form button {
-  padding: 10px 20px;
-  background: white;
-  color: black;
-  border: none;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.sales-form button:hover {
-  background: #ccc;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+  max-width: 250px;
 }
 
 .sales-table {
   width: 100%;
   border-collapse: collapse;
-  background: #1e1e1e;
-  border: 1px solid #444;
+  background-color: white;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .sales-table th,
 .sales-table td {
-  padding: 12px;
-  border: 1px solid #333;
+  padding: 12px 10px;
+  border: 1px solid #dee2e6;
   text-align: center;
 }
 
 .sales-table th {
-  background: #222;
-  color: #ccc;
+  background-color: #343a40;
+  color: white;
+  font-weight: 600;
 }
 
-.sales-table td {
+.sales-table td input {
+  width: 100%;
+  padding: 6px;
+  font-size: 14px;
+  border-radius: 4px;
+  border: 1px solid #ced4da;
+}
+
+.sales-table tr:nth-child(even) {
+  background-color: #f1f3f5;
+}
+
+.delete-btn {
+  background-color: #dc3545;
   color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.delete-btn:hover {
+  background-color: #c82333;
+}
+
+.header-controls {
+  margin-bottom: 15px;
+}
+
+.header-controls button {
+  margin-right: 10px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.header-controls button:hover {
+  background-color: #0056b3;
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
 }

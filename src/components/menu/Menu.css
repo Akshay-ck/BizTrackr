@@ -1,0 +1,30 @@
+.dnmenu-container {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.dnmenu-item {
+  display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    background: none;
+    color: #6b7280; /* gray-600 */
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    font-size: 14px;
+}
+
+.dnmenu-item:hover {
+    background-color: #f3f4f6;
+    color: #2563eb;
+}
+
+.dnmenu-item.active {
+    background-color: #dbeafe;
+    color: #2563eb;
+    font-weight: 600;
+}

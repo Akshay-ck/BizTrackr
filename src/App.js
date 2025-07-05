@@ -4,7 +4,7 @@ import DashboardPage from "./Dashboard/Dashboard";
 import SalesPage from './Sales/SalesPage';
 import RegisterPage from './RegisterPage/RegisterPage';
 import SalesList from './Sales/Saleslist';
-import SalesPage1 from './Sales/SalesPage1';
+import ExpensePage from './Expense/Expense';
 
 function App() {
   return (
@@ -15,6 +15,7 @@ function App() {
         <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/Sales" element={<SalesList />} />
         <Route path="/Sales/create" element={<SalesPage />} />
+        <Route path='/expense' element={<ExpensePage />} />
       </Routes>
     </Router>
   );
