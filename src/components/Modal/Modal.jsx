@@ -2,7 +2,7 @@ import React from 'react';
 import './Modal.css';
 import { X } from 'lucide-react';
 
-const Modal = ({ isOpen, onClose, width = '400px', height = 'auto', children }) => {
+const Modal = ({ isOpen, onClose, width, height = 'auto', children }) => {
     if (!isOpen) return null;
 
     return (
